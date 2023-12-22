@@ -10,6 +10,15 @@ from src.customer_segment.exception import customexception
 
 def saveobj(file_path, obj):
     try:
-        pass
+        dir_path = os.path.dirname(file_path)
+
+        os.makedirs(dir_path, exist_ok=  True)
+
+        with open(file_path, 'wb') as object:
+            dill.dump(obj, object)
+
+
+
+
     except Exception as e:
-        customexception(e,sys)
+        raise customexception(e,sys)

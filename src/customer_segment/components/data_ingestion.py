@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from src.customer_segment.logger import logging
 from src.customer_segment.exception import customexception
+from src.customer_segment.components.data_transformation import data_transformation
+
 import sys
 import os
 
@@ -23,7 +25,7 @@ class dataingestion:
     def initiate_data_ingestion(self):
         logging.info("Starting the data ingestion")
         try:
-            df = pd.read_csv(r"C:\Users\khush\Python, 12-7\Practice\Projects\Customer_segment_project_ete\notebooks\data\marketing_campaign.csv")
+            df = pd.read_csv(r"C:\Users\khush\Python, 12-7\Practice\Projects\Customer_segment_project_ete\notebooks\data\marketing_campaign.csv", sep = '\t')
 
             os.makedirs(os.path.dirname(self.dataingestionconfig.raw_data_path),exist_ok = True)
 
@@ -54,6 +56,9 @@ if __name__ == "__main__":
 
     obj = dataingestion()
     train_dataset,test_dataset = obj.initiate_data_ingestion()
+
+    obj1 = data_transformation()
+    train_arr,test_arr = obj1.initiate_pipeline(train_dataset,test_dataset)
 
 
 
