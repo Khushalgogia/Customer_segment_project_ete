@@ -4,6 +4,7 @@ import numpy as np
 from src.customer_segment.logger import logging
 from src.customer_segment.exception import customexception
 from src.customer_segment.components.data_transformation import data_transformation
+from src.customer_segment.components.model_trainer import model_trainer
 
 import sys
 import os
@@ -59,6 +60,10 @@ if __name__ == "__main__":
 
     obj1 = data_transformation()
     train_arr,test_arr = obj1.initiate_pipeline(train_dataset,test_dataset)
+
+    obj2 = model_trainer()
+    report = obj2.model_trainer(train_arr,test_arr)
+    print(report)
 
 
 

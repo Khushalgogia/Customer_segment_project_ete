@@ -14,20 +14,21 @@ from imblearn.over_sampling import SMOTE
 from sklearn.model_selection import (train_test_split, StratifiedKFold, KFold)
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import (AdaBoostClassifier, GradientBoostingClassifier, RandomForestClassifier, BaggingClassifier)
-
+from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, recall_score, classification_report, confusion_matrix
 from sklearn.metrics import roc_curve, roc_auc_score
 
 from src.customer_segment.exception import customexception
 from src.customer_segment.logger import logging
-from src.customer_segment.utils.utils import saveobj
+from src.customer_segment.utils.utils import (saveobj, evaluatemodel)
 
 
 
 @dataclass
 class model_trainer_config:
     model_path = os.path.join("artifect", 'model.pkl')
+    model_evaluation_report = os.path.join("artifect", "evaluation_report.csv")
 
 class model_trainer:
     def __init__(self):
@@ -43,11 +44,23 @@ class model_trainer:
 
             over_sampler = SMOTE()
             xTrain,yTrain = over_sampler.fit_resample(x_variable_train, y_variable_train)
-            models = {
+            logging.info("SMOTE DONE")
+            model1 = {
                 "DecisionTree" : DecisionTreeClassifier(),
                 "RandomForest" : RandomForestClassifier(),
+                "GradientBoostingClassifier" : GradientBoostingClassifier(),
+                "AdaBoostClassifier" : AdaBoostClassifier(),
+                "BaggingClassifier" : BaggingClassifier(),
+                "LogisticRegression" : LogisticRegression()
                 
             }
+
+            model_report = evaluatemodel(xTrain= xTrain, yTrain= yTrain, xTest=x_variable_test, yTest=y_variable_test,models=model1)
+
+            logging.info(model_report)
+
+            model_report.to_csv(self.model_trainer_config.model_evaluation_report)
+            return model_report
 
 
 
