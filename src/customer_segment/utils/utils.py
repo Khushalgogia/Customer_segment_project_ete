@@ -47,8 +47,15 @@ def evaluatemodel(xTrain,yTrain,xTest,yTest,models):
             report_df = report_df.rename(columns = {0 : 'Train_Accuracy_score', 1 : 'Test_Accuracy_score',
                                                     2 : "Train_Recall_score", 3 : "Test_Recall_score",
                                                     4 : "Train_f1_score", 5 : "Test_f1_score"})
-            
-        return report_df
+        
+        #Final Model as per Recall
+        best_model = report_df[report_df['Test_Recall_score'] == report_df['Test_Recall_score'].max()].index[0]
+        Final_model = models[best_model]
+        logging.info(f"Best model is {best_model}")
+        ml_model = Final_model.fit(xTrain,yTrain)
+
+
+        return report_df, ml_model
             
 
 

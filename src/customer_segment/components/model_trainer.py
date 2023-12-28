@@ -55,12 +55,16 @@ class model_trainer:
                 
             }
 
-            model_report = evaluatemodel(xTrain= xTrain, yTrain= yTrain, xTest=x_variable_test, yTest=y_variable_test,models=model1)
+            model_report, my_model = evaluatemodel(xTrain= xTrain, yTrain= yTrain, xTest=x_variable_test, yTest=y_variable_test,models=model1)
 
-            logging.info(model_report)
+            logging.info("Extracting model_report and final_model")
+            saveobj(file_path = self.model_trainer_config.model_path,
+                    obj = my_model)
 
             model_report.to_csv(self.model_trainer_config.model_evaluation_report)
-            return model_report
+            logging.info("Final_model_report is here and model.pkl file is also here")
+            
+            return my_model
 
 
 

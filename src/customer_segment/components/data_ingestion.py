@@ -62,8 +62,8 @@ if __name__ == "__main__":
     train_arr,test_arr = obj1.initiate_pipeline(train_dataset,test_dataset)
 
     obj2 = model_trainer()
-    report = obj2.model_trainer(train_arr,test_arr)
-    print(report)
+    model = obj2.model_trainer(train_arr,test_arr)
+    
 
 
 
