@@ -20,6 +20,7 @@ from src.customer_segment.utils.utils import saveobj
 @dataclass
 class datatransformationconfig:
     preprocesser_path = os.path.join("artifect", "prediction_preprocessor.pkl")
+    preprocessed_dataset = os.path.join("artifect", 'preprocessed_scaled_dataset.csv')
 
 class data_transformation:
     def __init__(self):
@@ -137,7 +138,14 @@ class data_transformation:
 
             train_arr = preprocessor_obj.fit_transform(train_df)
             test_arr = preprocessor_obj.fit_transform(test_df)
-
+            concatenateda_array = np.concatenate((train_arr,test_arr), axis = 0)
+            preprocessed_columns = ['Dt_Customer','Marital_Status', 'Education', 'Current_Age',
+                                    'Recency', 'NumWebVisitsMonth', 'Income', 'childornot',
+                                    'total_amt_spent', 'totalnum_purchases','Target']
+            
+            Preprocessed_df = pd.DataFrame(concatenateda_array, columns = preprocessed_columns)
+            logging.info("preprocessed dataset created")
+            Preprocessed_df.to_csv(self.datatransformationconfig.preprocessed_dataset)
             logging.info("Preprocessing done on dataset through our pipeline")
 
             saveobj(
