@@ -92,11 +92,6 @@ class data_transformation:
                 
 
 
-
-
-            
-
-
             transformed_cols = ['Dt_Customer','Marital_Status','Education', 'Kidhome', 'Teenhome', 'MntWines', 'MntFruits', 
                                 'MntMeatProducts', 'MntFishProducts', 'MntSweetProducts', 'MntGoldProds',
                             'NumDealsPurchases', 'NumWebPurchases', 'NumCatalogPurchases', 'NumStorePurchases','Year_Birth',
@@ -119,9 +114,9 @@ class data_transformation:
         except Exception as e:
             raise customexception(e,sys)
 
-    def data_transformation_fn(self,data_path):
+    def data_transformation_fn(self,df):
         try:
-            df = pd.read_csv(data_path)
+            #df = pd.read_csv(data_path)
             logging.info("Will transform the dataset")
 
             preprocessor = self.building_pipeline()
@@ -137,7 +132,7 @@ class data_transformation:
 
 
 
-            return preprocessed_data_array
+            return my_df
         except Exception as e:
             raise customexception(e,sys)
 
