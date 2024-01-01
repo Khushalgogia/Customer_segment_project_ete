@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Predictor</title>
+    <style>
+        /* Your existing CSS styles here... */
+        body {
+            background-image: url('/static/images/background.png'); /* Replace 'path_to_your_image.jpg' with the actual path to your image */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-repeat: no-repeat;
+            background-color: lightblue; /* Light blue background color for the entire page */
+            font-family: Montserrat, sans-serif; /* Specify the font-family for the entire page */
+            text-align: center;
+             /* Center-align text on the page */
+        }
+
+        h1 {
+            font-size: 46px; /* Increased font size for the title */
+            font-weight: bold; /* Make the title bold */
+            margin-bottom: 20px; /* Add space below the title */
+            color: #0893de; /* Dark text color for the title */
+        }
+
+        /* Additional style for the result display */
+        #result {
+            font-size: 28px; /* Increased font size for the result */
+            margin-top: 20px; /* Add space between form and result */
+            color: #333; /* Dark text color for the result */
+        }
+
+        /* Style for the form */
+        form {
+            width: 60%; /* Increase form width to fit the page */
+            margin: 0 auto; /* Center-align the form on the page */
+        }
+
+        /* Style for the form input fields and button */
+        label {
+            display: block;
+            font-weight: bold; /* Make labels bold */
+            margin-bottom: 10px;
+            color: #0d7aff; /* Add space below labels */
+        }
+
+        .input-group {
+            width: 45%; /* Set width to 45% for input groups (2 input boxes on one line) */
+            display: inline-block; /* Display input groups inline */
+            vertical-align: top; /* Align input groups to the top */
+            margin: 10px; /* Add margin around input groups */
+        }
+
+        .input-group input {
+            width: 100%; /* Set input width to 100% for full-width input boxes */
+            padding: 10px; /* Padding for input boxes */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px; /* Font size for input fields */
+            margin-top: 5px; /* Add space between input boxes and labels */
+        }
+
+        button {
+            background-color: #007BFF; /* Blue background color for the button */
+            color: white; /* White text color for the button text */
+            cursor: pointer;
+            font-size: 18px; /* Font size for the button text */
+            padding: 10px 20px; /* Padding for the button */
+            border: none; /* Remove button border */
+            margin-top: 20px; /* Add space above the button */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker blue color on hover */
+        }
+        .input-group select {
+            width: 100%; /* Set the width to 100% for the select element */
+            padding: 10px; /* Padding for the select box */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px; /* Font size for the select box */
+            margin-top: 5px; /* Add space between select box and labels */
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <h1>Customer Predictor</h1>
+    <form method='POST' action='/predict'>
+
+        <div class="input-group">
+            <label for='ID'>ID</label>
+            <input type='number' name='ID' required='required'>
+        </div>
+
+
+
+
+
+        <div class="input-group">
+            <label for='Year_Birth'>Year_Birth</label>
+            <input type='number' name='Year_Birth' required='required'>
+        </div>
+        <div class="input-group">
+            <label for='Education'>Education</label>
+            
+            
+            <select name='Education' required='required'>
+                <option value='Graduation'>Graduation</option>
+                <option value='PhD'>PhD</option>
+                <option value='Master'>Master</option>
+                <option value='Basic'>Basic</option>
+                <option value='2n Cycle'>2n Cycle</option>
+
+            </select>    
+
+        </div>
+
+
+        <div class="input-group">
+            <label for='Marital_Status'>Marital_Status</label>
+            <select name='Marital_Status' required='required'>
+                <option value='Single'>Single</option>
+                <option value='Together'>Together</option>
+                <option value='Married'>Married</option>
+                <option value='Divorced'>Divorced</option>
+                <option value='Widow'>Widow</option>
+                <option value='Alone'>Alone</option>
+                <option value='Absurd'>Absurd</option>
+                <option value='YOLO'>YOLO</option>
+
+            </select> 
+        </div>
+
+
+        <div class="input-group">
+            <label for='Income'>Income</label>
+            <input type='number' name='Income' required='required'>
+        </div>
+
+
+
+        <div class="input-group">
+            <label for='Kidhome'>Kidhome</label>
+            <select name='Kidhome' required='required'>
+                <option value=1>Yes</option>
+                <option value=0>No</option>
+            </select>
+        </div>
+
+
+        <div class="input-group">
+            <label for='Teenhome'>Teenhome</label>
+            <select name='Teenhome' required='required'>
+                <option value=1>Yes</option>
+                <option value=0>No</option>
+            </select>
+        </div>
+
+
+        <div class="input-group">
+            <label for='Dt_Customer'>Dt_Customer (DD-MM-YYYY)</label>
+            <input type='text' name='Dt_Customer' required='required'>
+        </div>
+
+
+
+        <div class="input-group">
+            <label for='Recency'>Recency</label>
+            <input type='number' name='Recency' required='required'>
+        </div>
+
+
+        <div class="input-group">
+            <label for='MntWines'>MntWines</label>
+            <input type='number' name='MntWines' required='required'>
+        </div>
+
+        <div class="input-group">
+            <label for='MntFruits'>MntFruits</label>
+            <input type='number' name='MntFruits' required='required'>
+        </div>
+
+
+        <div class="input-group">
+            <label for='MntMeatProducts'>MntMeatProducts</label>
+            <input type='number' name='MntMeatProducts' required='required'>
+        </div>
+
+
+        <div class="input-group">
+            <label for='MntFishProducts'>MntFishProducts</label>
+            <input type='number' name='MntFishProducts' required='required'>
+        </div>
+
+        <div class="input-group">
+            <label for='MntSweetProducts'>MntSweetProducts</label>
+            <input type='number' name='MntSweetProducts' required='required'>
+        </div>
+
+
+        <div class="input-group">
+            <label for='MntGoldProds'>MntGoldProds</label>
+            <input type='number' name='MntGoldProds' required='required'>
+        </div>
+
+
+        <div class="input-group">
+            <label for='NumDealsPurchases'>NumDealsPurchases</label>
+            <input type='number' name='NumDealsPurchases' required='required'>
+        </div>
+
+
+        <div class="input-group">
+            <label for='NumWebPurchases'>NumWebPurchases</label>
+            <input type='number' name='NumWebPurchases' required='required'>
+        </div>
+
+        <div class="input-group">
+            <label for='NumCatalogPurchases'>NumCatalogPurchases</label>
+            <input type='number' name='NumCatalogPurchases' required='required'>
+        </div>
+
+
+        <div class="input-group">
+            <label for='NumStorePurchases'>NumStorePurchases</label>
+            <input type='number' name='NumStorePurchases' required='required'>
+        </div>
+
+
+        <div class="input-group">
+            <label for='NumWebVisitsMonth'>NumWebVisitsMonth</label>
+            <input type='number' name='NumWebVisitsMonth' required='required'>
+        </div>
+
+
+        <div class="input-group">
+            <label for='AcceptedCmp3'>AcceptedCmp3</label>
+            <select name='AcceptedCmp3' required='required'>
+                <option value=1>Yes</option>
+                <option value=0>No</option>
+            </select>
+        </div>
+
+
+
+        <div class="input-group">
+            <label for='AcceptedCmp4'>AcceptedCmp4</label>
+            <select name='AcceptedCmp4' required='required'>
+                <option value=1>Yes</option>
+                <option value=0>No</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for='AcceptedCmp5'>AcceptedCmp5</label>
+            <select name='AcceptedCmp5' required='required'>
+                <option value=1>Yes</option>
+                <option value=0>No</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for='AcceptedCmp1'>AcceptedCmp1</label>
+            <select name='AcceptedCmp1' required='required'>
+                <option value=1>Yes</option>
+                <option value=0>No</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for='AcceptedCmp2'>AcceptedCmp2</label>
+            <select name='AcceptedCmp2' required='required'>
+                <option value=1>Yes</option>
+                <option value=0>No</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for='Complain'>Complain</label>
+            <select name='Complain' required='required'>
+                <option value=1>Yes</option>
+                <option value=0>No</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for='Z_CostContact'>Z_CostContact</label>
+            <select name='Z_CostContact' required='required'>
+                <option value=3>Yes</option>
+                
+            </select>
+        </div>
+
+
+        <div class="input-group">
+            <label for='Z_Revenue'>Z_Revenue</label>
+            <select name='Z_Revenue' required='required'>
+                <option value=11>Yes</option>
+                <option value=11>No</option>
+            </select>
+        </div>
+
+
+
+
+        <div class="input-group">
+            <label for='Response'>Response</label>
+            <select name='Response' required='required'>
+                <option value=1>Yes</option>
+                <option value=0>No</option>
+            </select>
+        </div>
+        
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Check the prediction" required />
+        </div>
+    </form>
+    <h2>
+        You are actually {{results}}
+     </h2>
+</body>
+</html>

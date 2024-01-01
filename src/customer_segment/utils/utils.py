@@ -3,6 +3,7 @@ import os
 import dill
 import pandas as pd
 import numpy as np
+import pickle
 
 from src.customer_segment.logger import logging
 from src.customer_segment.exception import customexception
@@ -66,3 +67,13 @@ def evaluatemodel(xTrain,yTrain,xTest,yTest,models):
 
     except Exception as e:
         raise customexception(e,sys)
+    
+
+def load_model(file_obj):
+    try:
+        with open(file_obj, 'rb') as file:
+            return pickle.load(file)
+    except Exception as e:
+        raise customexception(e,sys)
+    
+    
