@@ -34,7 +34,7 @@ class data_transformation:
                 dataset = dataset.drop(columns = ['ID', 'Z_CostContact', 'Z_Revenue','Complain'])
                 dataset['Income'] = dataset['Income'].fillna(dataset['Income'].median())
                 
-                dataset['Dt_Customer'] = pd.to_datetime(dataset['Dt_Customer'],format='%d-%M-%Y')
+                dataset['Dt_Customer'] = pd.to_datetime(dataset['Dt_Customer'],format='%d-%m-%Y')
                 max_date = max(dataset['Dt_Customer'])
                 l1 = (max_date - dataset['Dt_Customer']).dt.days
                 dataset['Dt_Customer'] = l1

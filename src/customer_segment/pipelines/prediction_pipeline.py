@@ -14,19 +14,23 @@ class PredictPipeline:
 
     def predict(self, data):
         try:
+            logging.info("Starting my app.py file")
             model_path = os.path.join("artifect", "model.pkl")
             preprocessor_path = os.path.join("artifect", "prediction_preprocessor.pkl")
             transformed_data = os.path.join("pipeline", "transformed_data.csv")
-            #datatransformer = data_transformation()
-            #preprocessor = datatransformer.get_data_transformer_obj()
+            logging.info("preprocessor and transformed data path created")
+            datatransformer = data_transformation()
+            preprocessor = datatransformer.get_data_transformer_obj()
             model_predict = load_model(model_path)
-            preprocessor = load_model(preprocessor_path)
-
+            #preprocessor = load_model(preprocessor_path)
+            logging.info("Now starting the transformation of preprocessor")
             transformed_data = preprocessor.fit_transform(data)
+            logging.info("Data Transformed")
             transformed_data = transformed_data[:,:-1]
+            logging.info("target column removed")
             
             predicted_data = model_predict.predict(transformed_data)
-
+            logging.info(f"Answer predicted : {predicted_data}")
             return predicted_data
         except Exception as e:
             raise customexception(e,sys)
@@ -71,10 +75,12 @@ class df_converter:
     
     def convert_to_df(self):
         try:
+            logging.info("creating the df")
             custom_dic = {
                 'ID' : [self.ID], 'Year_Birth' : [self.Year_Birth], 'Education' : [self.Education], 'Marital_Status' : [self.Marital_Status], 
                 'Income' : [self.Income], 'Kidhome' : [self.Kidhome], 
-                'Teenhome' : [self.Teenhome], 'Dt_Customer' : [self.Dt_Customer], 'Recency': [self.Recency], 
+                'Teenhome' : [self.Teenhome], 'Dt_Customer' : [pd.to_datetime(self.Dt_Customer, format='%d-%m-%Y')],
+                  'Recency': [self.Recency], 
                 'MntWines': [self.MntWines], 'MntFruits': [self.MntFruits], 'MntMeatProducts': [self.MntMeatProducts],
                   'MntFishProducts': [self.MntFishProducts], 
                 'MntSweetProducts': [self.MntSweetProducts], 'MntGoldProds': [self.MntGoldProds], 
@@ -86,6 +92,7 @@ class df_converter:
                 'AcceptedCmp2': [self.AcceptedCmp2], 'Complain': [self.Complain],
                   'Z_CostContact': [self.Z_CostContact], 'Z_Revenue': [self.Z_Revenue], 'Response': [self.Response]
             }
+            logging.info("Values ingested")
 
             return pd.DataFrame(custom_dic)
         except Exception as e:

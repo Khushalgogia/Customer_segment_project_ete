@@ -142,19 +142,13 @@
 
         <div class="input-group">
             <label for='Kidhome'>Kidhome</label>
-            <select name='Kidhome' required='required'>
-                <option value=1>Yes</option>
-                <option value=0>No</option>
-            </select>
+            <input type='number' name='Kidhome' required='required'>
         </div>
 
 
         <div class="input-group">
             <label for='Teenhome'>Teenhome</label>
-            <select name='Teenhome' required='required'>
-                <option value=1>Yes</option>
-                <option value=0>No</option>
-            </select>
+            <input type='number' name='Teenhome' required='required'>
         </div>
 
 
@@ -236,69 +230,57 @@
 
         <div class="input-group">
             <label for='AcceptedCmp3'>AcceptedCmp3</label>
-            <select name='AcceptedCmp3' required='required'>
-                <option value=1>Yes</option>
-                <option value=0>No</option>
-            </select>
+            <input type='number' name='AcceptedCmp3' required='required'>
         </div>
 
 
 
         <div class="input-group">
             <label for='AcceptedCmp4'>AcceptedCmp4</label>
-            <select name='AcceptedCmp4' required='required'>
-                <option value=1>Yes</option>
-                <option value=0>No</option>
-            </select>
+            <input type='number' name='AcceptedCmp4' required='required'>
         </div>
+
 
         <div class="input-group">
             <label for='AcceptedCmp5'>AcceptedCmp5</label>
-            <select name='AcceptedCmp5' required='required'>
-                <option value=1>Yes</option>
-                <option value=0>No</option>
-            </select>
+            <input type='number' name='AcceptedCmp5' required='required'>
         </div>
+
+
 
         <div class="input-group">
             <label for='AcceptedCmp1'>AcceptedCmp1</label>
-            <select name='AcceptedCmp1' required='required'>
-                <option value=1>Yes</option>
-                <option value=0>No</option>
-            </select>
+            <input type='number' name='AcceptedCmp1' required='required'>
         </div>
+
+
 
         <div class="input-group">
             <label for='AcceptedCmp2'>AcceptedCmp2</label>
-            <select name='AcceptedCmp2' required='required'>
-                <option value=1>Yes</option>
-                <option value=0>No</option>
-            </select>
+            <input type='number' name='AcceptedCmp2' required='required'>
         </div>
+
+
 
         <div class="input-group">
             <label for='Complain'>Complain</label>
-            <select name='Complain' required='required'>
-                <option value=1>Yes</option>
-                <option value=0>No</option>
-            </select>
+            <input type='number' name='Complain' required='required'>
         </div>
+
+
+
 
         <div class="input-group">
             <label for='Z_CostContact'>Z_CostContact</label>
-            <select name='Z_CostContact' required='required'>
-                <option value=3>Yes</option>
-                
-            </select>
+            <input type='number' name='Z_CostContact' required='required'>
         </div>
+
+
 
 
         <div class="input-group">
             <label for='Z_Revenue'>Z_Revenue</label>
-            <select name='Z_Revenue' required='required'>
-                <option value=11>Yes</option>
-                <option value=11>No</option>
-            </select>
+            <input type='number' name='Z_Revenue' required='required'>
         </div>
 
 
@@ -306,18 +288,17 @@
 
         <div class="input-group">
             <label for='Response'>Response</label>
-            <select name='Response' required='required'>
-                <option value=1>Yes</option>
-                <option value=0>No</option>
-            </select>
+            <input type='number' name='Response' required='required'>
         </div>
+
+
         
         <div class="mb-3">
             <input class="btn btn-primary" type="submit" value="Check the prediction" required />
         </div>
     </form>
     <h2>
-        You are actually {{results}}
+        {{results}}
      </h2>
 </body>
 </html>
