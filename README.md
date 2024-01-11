@@ -1,4 +1,3 @@
-## Customer Segmentation Project
 
 # Customer Segmentation and Purchase Prediction
 
