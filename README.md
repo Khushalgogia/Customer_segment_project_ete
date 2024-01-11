@@ -1,4 +1,4 @@
-![background (1)](https://github.com/Khushalgogia/Customer_segment_project_ete/assets/43295537/c32fd683-4d65-4c3b-bec9-4a2dce3e7c97)
+![background-8](https://github.com/Khushalgogia/Customer_segment_project_ete/assets/43295537/3500736e-927e-49f7-ae2a-eb304be399bc)
 
 
 # Customer Segmentation and Purchase Prediction
