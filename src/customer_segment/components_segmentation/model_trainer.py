@@ -25,6 +25,7 @@ from src.customer_segment.utils.utils import (saveobj, evaluatemodel)
 
 from sklearn.cluster import KMeans
 from sklearn.cluster import AgglomerativeClustering
+from sklearn.cluster import KMeans
 
 @dataclass
 class model_trainer_config:
@@ -39,22 +40,25 @@ class model_trainer:
         try:
             # We are making two clusters
             
-            agg = AgglomerativeClustering(n_clusters = 2)
             
-            segment = agg.fit_predict(data)
+            model = KMeans(n_clusters= 2, init= 'k-means++')
+            segment = model.fit_predict(data)
             data['segments'] = segment
 
             # Segmenting both of these customers
-            data['segments'] = data['segments'].apply(lambda x : "Bad Customers" if x == 1 else "Good Customers")
+            data['segments'] = data['segments'].apply(lambda x : "Basic Customers" if x == 1 else "Premium Customers")
 
             data.to_csv(self.model_trainer_config.segmented_data_path, index = False, header = True)
 
-            saveobj(file_path= self.model_trainer_config.model_trainer_path, obj = agg)
+            saveobj(file_path= self.model_trainer_config.model_trainer_path, obj = model)
 
             return data
         
         except Exception as e:
             raise customexception(e,sys)
+        
+
+    
 
 
 

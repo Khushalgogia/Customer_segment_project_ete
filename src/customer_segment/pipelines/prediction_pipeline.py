@@ -35,6 +35,25 @@ class PredictPipeline:
         except Exception as e:
             raise customexception(e,sys)
         
+    def predict_segment(self,data):
+        try:
+            segment_model_path = os.path.join("artifects_segmentation", "cluster_predict.pkl")
+            model = load_model(segment_model_path)
+            transformer_path = os.path.join("artifects_segmentation", "preprocessor.pkl")
+            transformer = load_model(transformer_path)
+            logging.info("Model and Transformer loaded")
+            transformed_data = transformer.fit_transform(data)
+            segment = model.predict(transformed_data)
+            return segment
+
+
+
+
+
+
+        except Exception as e:
+            raise customexception(e,sys)
+        
 
 
 class df_converter:
@@ -105,7 +124,7 @@ if __name__ == "__main__":
     df = obj1.convert_to_df()
 
     obj2 = PredictPipeline()
-    ans = obj2.predict(df)
+    ans = obj2.predict_segment(df)
     print(ans[0])
 
 

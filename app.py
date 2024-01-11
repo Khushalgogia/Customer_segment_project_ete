@@ -50,11 +50,16 @@ def predictor():
           pipeline = PredictPipeline()
           logging.info("Now predicting the final answer")
           final_result = pipeline.predict(df)
+          segment_predict = pipeline.predict_segment(df)
           logging.info("Hurray, answer predicted")
-          if final_result[0] == 0:
-              response = "This customer is not gonna buy from us"
-          elif final_result[0] == 1:
-              response = "This is our customer, PAY ATTENTION!!"
+          if final_result[0] == 0 and segment_predict[0]  == 0:
+              response = "This is our Premium Customer but He is less likely to buy from us based on the given data"
+          elif final_result[0] == 0 and segment_predict[0]  == 1:
+              response = "This customer is a Basic Customer and He is less likely to buy from us based on the given data"
+          elif final_result[0] == 1 and segment_predict[0]  == 0:
+              response = "This customer is a Premium Customer and He is more likely to buy from us based on the given data, PAY ATTENTION!!"
+          elif final_result[0] == 1 and segment_predict[0]  == 1:
+              response = "This customer is a Basic Customer but He is more likely to buy from us  based on the given data, PAY ATTENTION!!"
           return render_template("home.html",results = response)
         except Exception as e:
             raise customexception(e,sys)
