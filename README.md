@@ -65,6 +65,8 @@ This project focuses on leveraging data science techniques to predict customer p
 
 Feel free to explore the codebase and adapt it for your specific needs. Feedback and contributions are highly welcomed!
 
+Check the git clone
+
 
 
 
